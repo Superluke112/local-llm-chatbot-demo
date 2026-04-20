@@ -16,7 +16,7 @@ It supports multi-turn conversation with a sliding-window memory mechanism, allo
 - Python
 - Requests
 - Ollama
-- Local LLM model (for example, Gemma 3)
+- Local LLM model (Gemma 3)
 
 ## Project Structure
 
