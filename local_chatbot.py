@@ -10,7 +10,7 @@ REQUEST_TIMEOUT = 60
 
 def trim_history(messages: List[Dict[str, str]], max_history: int) -> List[Dict[str, str]]:
     """
-    Keep only the most recent conversation turns.
+    只保留最近的若干轮对话。
     """
     if len(messages) <= max_history:
         return messages
@@ -19,7 +19,7 @@ def trim_history(messages: List[Dict[str, str]], max_history: int) -> List[Dict[
 
 def build_payload(messages: List[Dict[str, str]]) -> Dict:
     """
-    Build request payload for Ollama chat API.
+    构建发送给 Ollama Chat API 的请求体。
     """
     return {
         "model": MODEL_NAME,
@@ -30,7 +30,7 @@ def build_payload(messages: List[Dict[str, str]]) -> Dict:
 
 def get_model_reply(messages: List[Dict[str, str]]) -> str:
     """
-    Send the conversation to Ollama and return the assistant reply.
+    将对话发送给 Ollama，并返回助手回复。
     """
     payload = build_payload(messages)
 
@@ -43,47 +43,47 @@ def get_model_reply(messages: List[Dict[str, str]]) -> str:
         response.raise_for_status()
     except requests.exceptions.ConnectionError:
         raise RuntimeError(
-            "Could not connect to Ollama. "
-            "Make sure Ollama is running and the API URL is correct."
+            "无法连接到 Ollama。"
+            "请确认 Ollama 已运行，并且 API 地址正确。"
         )
     except requests.exceptions.Timeout:
         raise RuntimeError(
-            f"Request timed out after {REQUEST_TIMEOUT} seconds."
+            f"请求在 {REQUEST_TIMEOUT} 秒后超时。"
         )
     except requests.exceptions.HTTPError as e:
-        raise RuntimeError(f"HTTP error: {e}")
+        raise RuntimeError(f"HTTP 错误：{e}")
     except requests.exceptions.RequestException as e:
-        raise RuntimeError(f"Request failed: {e}")
+        raise RuntimeError(f"请求失败：{e}")
 
     try:
         data = response.json()
     except ValueError:
-        raise RuntimeError("The response is not valid JSON.")
+        raise RuntimeError("响应不是有效的 JSON。")
 
     try:
         reply = data["message"]["content"].strip()
     except (KeyError, TypeError):
         raise RuntimeError(
-            f"Unexpected response format: {data}"
+            f"响应格式不符合预期：{data}"
         )
 
     return reply
 
 
 def print_help() -> None:
-    print("\nCommands:")
-    print("  /help     Show available commands")
-    print("  /clear    Clear conversation history")
-    print("  /history  Show current conversation history")
-    print("  exit      Quit the chatbot\n")
+    print("\n命令：")
+    print("  /help     显示可用命令")
+    print("  /clear    清空对话历史")
+    print("  /history  显示当前对话历史")
+    print("  exit      退出聊天机器人\n")
 
 
 def print_history(messages: List[Dict[str, str]]) -> None:
     if not messages:
-        print("\n[History is empty]\n")
+        print("\n[历史记录为空]\n")
         return
 
-    print("\nConversation History:")
+    print("\n对话历史：")
     for i, msg in enumerate(messages, start=1):
         role = msg.get("role", "unknown").capitalize()
         content = msg.get("content", "")
@@ -94,19 +94,19 @@ def print_history(messages: List[Dict[str, str]]) -> None:
 def main() -> None:
     messages: List[Dict[str, str]] = []
 
-    print("Local Chatbot Demo")
-    print(f"Model: {MODEL_NAME}")
-    print(f"History window: {MAX_HISTORY}")
-    print("Type '/help' for commands or 'exit' to quit.\n")
+    print("本地聊天机器人演示")
+    print(f"模型：{MODEL_NAME}")
+    print(f"历史窗口：{MAX_HISTORY}")
+    print("输入 '/help' 查看命令，或输入 'exit' 退出。\n")
 
     while True:
-        user_input = input("User: ").strip()
+        user_input = input("用户：").strip()
 
         if not user_input:
             continue
 
         if user_input.lower() == "exit":
-            print("\nGoodbye!\n")
+            print("\n再见！\n")
             break
 
         if user_input == "/help":
@@ -115,7 +115,7 @@ def main() -> None:
 
         if user_input == "/clear":
             messages.clear()
-            print("\nConversation history cleared.\n")
+            print("\n对话历史已清空。\n")
             continue
 
         if user_input == "/history":
@@ -132,10 +132,10 @@ def main() -> None:
         try:
             reply = get_model_reply(messages)
         except RuntimeError as e:
-            print(f"\n[Error] {e}\n")
+            print(f"\n[错误] {e}\n")
             continue
 
-        print(f"\nAssistant: {reply}\n")
+        print(f"\n助手：{reply}\n")
 
         messages.append({
             "role": "assistant",
