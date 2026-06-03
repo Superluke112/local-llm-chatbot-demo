@@ -1,0 +1,13 @@
+2026-06-01 10:01:22 ERROR E104 Motor temperature high
+2026-06-01 10:02:08 WARN E610 Vibration threshold warning
+2026-06-01 10:03:11 ERROR E104 Retry failed
+2026-06-01 10:04:05 ERROR E205 Communication timeout
+2026-06-01 10:05:30 ERROR E104 Thermal warning
+2026-06-01 10:06:18 ERROR E301 Sensor calibration failed
+2026-06-01 10:07:44 ERROR E101 Power rail unstable
+2026-06-01 10:09:02 ERROR E104 Reduced speed triggered
+2026-06-01 10:10:15 ERROR E407 Firmware version mismatch
+2026-06-01 10:11:40 ERROR E205 Command retry failure
+2026-06-01 10:12:33 ERROR E502 Hydraulic pressure low
+2026-06-01 10:14:09 ERROR E104 Motor temperature still high
+2026-06-01 10:16:55 ERROR E720 Vision inspection mismatch

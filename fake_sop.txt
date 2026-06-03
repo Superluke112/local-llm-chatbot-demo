@@ -1,0 +1,15 @@
+E101: Power rail unstable. Symptoms include random reset, voltage ripple, and boot failure. Recommended checks: measure voltage ripple, inspect connector condition, check power supply load, and verify grounding.
+
+E104: Motor temperature high. Symptoms include thermal warning, reduced speed, and repeated retry attempts. Recommended checks: inspect cooling fan, check motor load, verify temperature sensor reading, and review retry count.
+
+E205: Communication timeout. Symptoms include missing response, bus timeout, and command retry failure. Recommended checks: inspect CAN bus connection, check cable quality, verify firmware logs, and confirm device address.
+
+E301: Sensor calibration failed. Symptoms include abnormal sensor offset, unstable reading, and calibration timeout. Recommended checks: repeat calibration, inspect sensor connector, check environmental conditions, and compare with golden unit.
+
+E407: Firmware update failed. Symptoms include update interruption, boot loop, or version mismatch. Recommended checks: verify firmware package, check power stability during update, and review update logs.
+
+E502: Hydraulic pressure low. Symptoms include slow actuator movement, pressure alarm, and incomplete stroke. Recommended checks: inspect hydraulic pump output, check oil level, verify pressure sensor reading, and inspect leakage around valves.
+
+E610: Vibration threshold exceeded. Symptoms include abnormal vibration warning, bearing noise, and unstable spindle speed. Recommended checks: inspect bearing condition, verify machine alignment, check mounting bolts, and review vibration trend data.
+
+E720: Vision inspection mismatch. Symptoms include repeated reject signal, image alignment offset, and inconsistent detection score. Recommended checks: clean camera lens, verify lighting condition, recalibrate inspection region, and compare current image with reference template.
